@@ -1,14 +1,28 @@
-import assert from 'assert';
-import expect from 'expect';
+import chai from 'chai';
+chai.should();
 
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal(-1, [1,2,3].indexOf(4));
-    });
-    it('should run async test', function(done) {
-      expect(1+1).toEqual(2);
-      done();
-    });
+describe('chai should', function() {
+
+  it('string', () => {
+    const foo = 'foo';
+    foo.should.be.a('string');
+    foo.should.equal('foo');
+    foo.should.have.length(3);
   });
+
+  it('object', () => {
+    const foo = {
+      tea: ['aaa', 'bbb']
+    };
+    foo.should.have.property('tea').with.length(2);
+  });
+
+  it('combine assertions', () => {
+    const foo = 'foo';
+    foo.should.with.length(3)
+      .have.length(3)
+      .be.a('string')
+      .equal('foo');
+  });
+
 });
